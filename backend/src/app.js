@@ -20,7 +20,8 @@ pool.connect()
 
 // Middlewares
 //app.use(cors(corsConfig));
-app.use(cors());
+//app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // Routes
