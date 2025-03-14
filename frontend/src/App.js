@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-	const API_URL = process.env.REACT_APP_API_URL;
-
 	console.log("La url de la API es: ", API_URL);
 
 	const [notesArray, setNotesArray] = useState([]);
@@ -17,7 +15,7 @@ function App() {
 	}
 
 	useEffect(() => {
-		fetch(`${API_URL}/v1/notes`)
+		fetch("/api/v1/notes")
 			.then(response => response.json())
 			.then(data => {setNotesArray(data); setOptionsArray(data)})
 			.catch(error => console.error("Error:", error));
@@ -25,12 +23,12 @@ function App() {
 
 	useEffect(() => {
 		if (selectedNote === null) {
-			fetch(`${API_URL}/v1/notes`)
+			fetch("/api/v1/notes")
 				.then(response => response.json())
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
 		} else {
-			fetch(`${API_URL}/v1/notes/${selectedNote}`)
+			fetch(`/api/v1/notes/${selectedNote}`)
 				.then(response => response.json())
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
