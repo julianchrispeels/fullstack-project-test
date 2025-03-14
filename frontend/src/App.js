@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-	const url = 'http://localhost:5000';
+	const url = 'project-server-zeta.vercel.app';
 
 	const [notesArray, setNotesArray] = useState([]);
 	const [selectedNote, setSelectedNote] = useState('');
