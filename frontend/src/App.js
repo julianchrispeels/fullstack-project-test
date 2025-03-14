@@ -17,7 +17,7 @@ function App() {
 	}
 
 	useEffect(() => {
-		fetch(`${API_URL}/api/v1/notes`)
+		fetch(`${API_URL}/v1/notes`)
 			.then(response => response.json())
 			.then(data => {setNotesArray(data); setOptionsArray(data)})
 			.catch(error => console.error("Error:", error));
@@ -25,12 +25,12 @@ function App() {
 
 	useEffect(() => {
 		if (selectedNote === null) {
-			fetch(`${API_URL}/api/v1/notes`)
+			fetch(`${API_URL}/v1/notes`)
 				.then(response => response.json())
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
 		} else {
-			fetch(`${API_URL}/api/v1/notes/${selectedNote}`)
+			fetch(`${API_URL}/v1/notes/${selectedNote}`)
 				.then(response => response.json())
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
