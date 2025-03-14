@@ -6,14 +6,13 @@ import { CLIENT_URL } from './config/config.env.js';
 
 const app = express();
 
-/*const corsConfig = {
+const corsConfig = {
 	origin: CLIENT_URL, // Only allow requests from the client URL
 	credentials: true // Allow cookies and credentials
-};*/
+};
 
 // Middlewares
-//app.use(cors(corsConfig));
-app.use(cors());
+app.use(cors(corsConfig));
 app.use(express.json());
 
 // Routes

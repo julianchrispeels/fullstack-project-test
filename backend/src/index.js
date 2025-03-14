@@ -6,8 +6,8 @@ import sequelize from './database/database.js';
 
 async function main() {
 	await sequelize.sync({ force: false });
-	const PORT = process.env.PORT || 3001;
-	app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+	/*const PORT = process.env.PORT || 3001;
+	app.listen(PORT, () => console.log(`Server running on port ${PORT}`));*/
 }
 
 main();
