@@ -1,13 +1,14 @@
-import app from './app.js';
-import {PORT} from './config/config.env.js';
+//import app from './app.js';
+import "./app.js"
+import sequelize from './database/database.js';
+//import { PORT } from './config/config.env.js';
+
 
 async function main() {
-	console.log('Iniciando servidor...');
-	app;
+	await sequelize.sync({ force: false });
+	/*app.listen(PORT, () => {
+		console.log(`Servidor corriendo en http://localhost:${PORT}`);
+	});*/
 }
 
 main();
-
-/*app.listen(PORT, () => {
-	console.log(`Servidor corriendo en http://localhost:${PORT}`);  // ELIMINAR
-});*/

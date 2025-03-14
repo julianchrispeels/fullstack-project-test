@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-	const url = process.env.REACT_APP_API_URL;
+	const API_URL = process.env.REACT_APP_API_URL;
 
-	console.log("La url de la API es: ", process.env.REACT_APP_API_URL);
+	console.log("La url de la API es: ", API_URL);
 
 	const [notesArray, setNotesArray] = useState([]);
+	const [optionsArray, setOptionsArray] = useState([]);
 	const [selectedNote, setSelectedNote] = useState('');
 
 	const handleSelectNote = (e) => {
@@ -16,25 +17,25 @@ function App() {
 	}
 
 	useEffect(() => {
-		fetch(`${url}/api/v1/notes`)
+		fetch(`${API_URL}/api/v1/notes`)
 			.then(response => response.json())
-			.then(data => setNotesArray(data))
+			.then(data => {setNotesArray(data); setOptionsArray(data)})
 			.catch(error => console.error("Error:", error));
-	}, [url]);
+	}, [API_URL]);
 
 	useEffect(() => {
 		if (selectedNote === null) {
-			fetch(`${url}/api/v1/notes`)
+			fetch(`${API_URL}/api/v1/notes`)
 				.then(response => response.json())
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
 		} else {
-			fetch(`${url}/api/v1/notes/${selectedNote}`)
+			fetch(`${API_URL}/api/v1/notes/${selectedNote}`)
 				.then(response => response.json())
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
 		}
-	}, [selectedNote, url]);
+	}, [selectedNote, API_URL]);
 
 	return (
 		<div className='container'>
@@ -44,7 +45,7 @@ function App() {
 				Seleccionar nota por ID:
 				<select value={selectedNote} onChange={handleSelectNote} className='select'>
 					<option value={''}>Todos</option>
-					{notesArray.map((note, index) => (
+					{optionsArray.map((note, index) => (
 						<option key={index} value={note.id}>{note.title}</option>
 					))}
 				</select>
@@ -54,6 +55,7 @@ function App() {
 					<div key={index} className='note'>
 						<h2>{note.title}</h2>
 						<p>{note.content}</p>
+						<p>{note.isArchived ? 'Archivada' : 'Activa'}</p>
 					</div>
 				))}
 			</div>
