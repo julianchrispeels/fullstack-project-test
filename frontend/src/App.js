@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-	console.log("La url de la API es: ", API_URL);
-
 	const [notesArray, setNotesArray] = useState([]);
 	const [optionsArray, setOptionsArray] = useState([]);
 	const [selectedNote, setSelectedNote] = useState('');
@@ -19,7 +17,7 @@ function App() {
 			.then(response => response.json())
 			.then(data => {setNotesArray(data); setOptionsArray(data)})
 			.catch(error => console.error("Error:", error));
-	}, [API_URL]);
+	}, []);
 
 	useEffect(() => {
 		if (selectedNote === null) {
@@ -33,7 +31,7 @@ function App() {
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
 		}
-	}, [selectedNote, API_URL]);
+	}, [selectedNote]);
 
 	return (
 		<div className='container'>
