@@ -23,6 +23,9 @@ app.use(cors(corsConfig));
 app.use(express.json());
 
 // Routes
+app.use('/home', (req, res) => {
+	res.send(CLIENT_URL);
+});
 app.use('/api/v1', router)
 app.get('/*', (req, res) => {
 	res.status(404).json({ error: "Ruta no encontrada" });
