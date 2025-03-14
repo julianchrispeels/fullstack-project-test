@@ -12,14 +12,15 @@ pool.connect()
 	.then(() => console.log("Conectado a PostgreSQL en Supabase"))
 	.catch(err => console.error("Error de conexión:", err));
 
-const corsConfig = {
+/*const corsConfig = {
 	origin: CLIENT_URL, // Only allow requests from the client
 	methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
 	credentials: true // Allow cookies and credentials
-};
+};*/
 
 // Middlewares
-app.use(cors(corsConfig));
+//app.use(cors(corsConfig));
+app.use(cors());
 app.use(express.json());
 
 // Routes
