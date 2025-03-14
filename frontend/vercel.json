@@ -2,14 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://project-server-three.vercel.app/api/$1"
+      "destination": "https://project-server-zeta.vercel.app/api/$1"
     }
-  ],
-  "build": {
-    "src": "package.json",
-    "use": "@vercel/static-build",
-    "config": {
-      "distDir": "build"
-    }
-  }
+  ]
 }
