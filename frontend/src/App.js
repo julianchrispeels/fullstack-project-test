@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-	const url = 'https://project-server-zeta.vercel.app/';
+	const url = process.env.REACT_APP_API_URL;
+
+	console.log("La url de la API es: ", process.env.REACT_APP_API_URL);
 
 	const [notesArray, setNotesArray] = useState([]);
 	const [selectedNote, setSelectedNote] = useState('');
@@ -18,7 +20,7 @@ function App() {
 			.then(response => response.json())
 			.then(data => setNotesArray(data))
 			.catch(error => console.error("Error:", error));
-	}, []);
+	}, [url]);
 
 	useEffect(() => {
 		if (selectedNote === null) {
@@ -32,7 +34,7 @@ function App() {
 				.then(data => setNotesArray(data))
 				.catch(error => console.error("Error:", error));
 		}
-	}, [selectedNote]);
+	}, [selectedNote, url]);
 
 	return (
 		<div className='container'>
