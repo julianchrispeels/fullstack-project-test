@@ -1,8 +1,7 @@
 import pkg from 'pg';
 const {Pool} = pkg;
-import dotenv from 'dotenv';
 
-dotenv.config();
+import {DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD} from './config.env.js';
 
 const pool = new Pool({
     user: process.env.DB_USER,
